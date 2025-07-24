@@ -1,0 +1,122 @@
+.product-container {
+    padding-top: 10px;
+    opacity: 1;
+}
+
+.product-content {
+    display: flex;
+    gap: 10px;
+}
+
+.product-images {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3px;
+    max-width: 50%;
+}
+
+
+
+.thumbnail {
+    width: 50%;
+    flex-shrink: 0;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.main-img-container {
+    width: 80%;
+    
+}
+
+.main-image {
+    width: 100%;
+    height: 60%;
+    border-radius: 10px;
+}
+
+.product-info {
+    flex: 1;
+    max-width: 50%;
+}
+
+.product-info .product-name {
+    font-weight: 500;
+    font-size: 2rem;
+    margin-top: 10px;
+}
+
+.product-price {
+    margin-top: 20px;
+    font-size: 1.875rem;
+    font-weight: 500;
+}
+
+.product-description {
+    margin-top: 20px;
+    color: gray;
+}
+
+.product-divider {
+    margin-top: 30px;
+}
+
+.product-policy {
+    margin-top: 20px;
+    color: gray;
+    font-size: 0.875rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.add-to-cart-btn {
+    background: green;
+    color: white;
+    padding: 15px 80px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.description-review {
+    margin-top: 50px;
+    border-radius: 30px;
+    
+}
+
+.tabs {
+    display: flex;
+}
+
+.tab{
+    border: 1px solid;
+    border-radius: 22px;
+    padding: 10px 15px;
+    font-size: 0.875rem;
+}
+
+.description-content {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 20px;
+    color: gray;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+.toast-cart-button {
+  padding: 4px 8px;
+  border: none;
+  background: #000;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  margin-top: 8px;
+}

@@ -1,0 +1,121 @@
+.order-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: black;
+}
+
+.order-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 30px;
+}
+
+.order-card {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  padding: 20px;
+  transition: transform 0.2s;
+}
+
+.order-card:hover {
+  transform: translateY(-3px);
+}
+
+.order-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  color: black;
+}
+
+.section-header {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 4px;
+}
+
+.order-info, .order-address, .payment-method {
+  margin-top: 10px;
+  color: black;
+}
+
+.order-info span, .order-address span, .order-item span, .payment-method span, .order-tel span {
+  font-weight: 600;
+  color: black;
+}
+
+.order-address {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.order-items {
+  background-color: #f7f7f7;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.order-item {
+  margin-bottom: 10px;
+}
+
+.order-amount {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #2e7d32;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.order-status {
+  margin-top: 10px;
+  padding: 10px;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  color: black;
+  width: 100%;
+}
+
+
+.order-invoice {
+    margin: 5px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: black;
+}
+
+.order-address {
+    margin-top: 5px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.order-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.delete-icon-btn {
+  background: transparent;
+  border: none;
+  color: red;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+
+.delete-icon-btn:hover {
+  color: darkred;
+}
+
+

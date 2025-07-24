@@ -1,0 +1,74 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 60px;
+}
+
+.footer-top {
+    display: grid;
+    place-content: center;
+    gap: 5px;
+    margin-top: 80px;
+}
+
+.footer-top h2 {
+    font-size: 40px;
+    text-align: center;
+}
+
+.footer-top p {
+    font-size: 18px;
+    text-align: center;
+}
+
+.footer-top .input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input input {
+    flex-grow: 1;
+    padding: 15px;
+    border: 2px solid green;
+    border-right: none;
+    border-radius: 20px 0 0 20px;
+    outline: none;
+    font-size: 14px;
+}
+
+.input button {
+    background-color: green;
+    color: black;
+    border: 2px solid green;
+    padding: 15px 20px;
+    border-radius: 0px 20px 20px 0px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.socials {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.socials .social-icon {
+    font-size: 20px;
+}
+
+.footer-right ul{
+    display: flex;
+    gap: 15px;
+}
+
+.footer-right ul li {
+    font-size: 18px;
+    list-style: none;
+}

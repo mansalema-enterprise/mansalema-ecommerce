@@ -1,0 +1,40 @@
+.privacy-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.privacy-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.privacy-intro {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.privacy-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.privacy-list li {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.privacy-list a {
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+.privacy-footer {
+  font-size: 0.95rem;
+  font-style: italic;
+}
