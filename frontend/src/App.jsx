@@ -18,7 +18,7 @@ import PurchasePolicy from "./pages/PurchasePolicy/PurchasePolicy";
 import PrivacyPolicy from "./pages/PrivacyPolicy/PrivacyPolicy";
 import CustomerService from "./components/CustomerService/CustomerService";
 
-export const backendUrl = "http://localhost:4000";
+export const backendUrl = "https://mansalema-ecommerce.onrender.com";
 
 const App = () => {
   return (
