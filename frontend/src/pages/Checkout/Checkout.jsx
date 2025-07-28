@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ShopContext } from "../../context/ShopContext";
 import CartTotal from "../../components/CartTotal/CartTotal";
-import { assets } from "../../assets/assets"; // Make sure payfast_logo is added here
+import { assets } from "../../assets/assets"; 
 import axios from "axios";
 import { backendUrl } from "../../App";
 import { toast } from "react-toastify";
