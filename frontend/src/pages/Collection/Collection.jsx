@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { ShopContext } from '../../Context/ShopContext'
+import { ShopContext } from '../../context/ShopContext'
 import { useParams, Link } from 'react-router-dom'
 import panic_button from '../../assets/panic-button.jpg'
 

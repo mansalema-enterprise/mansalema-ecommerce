@@ -5,7 +5,7 @@ import { FaCentos } from "react-icons/fa";
 import { MdSupportAgent } from "react-icons/md";
 import "./Navbar.css";
 import CustomerService from "../CustomerService/CustomerService";
-import { ShopContext } from "../../Context/ShopContext";
+import { ShopContext } from "../../context/ShopContext";
 
 const Navbar = () => {
   const { updateSearchTerm, getCartCount, token, setToken } =
