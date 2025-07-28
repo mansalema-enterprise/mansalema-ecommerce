@@ -11,7 +11,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Checkout from "./pages/Checkout/Checkout";
 import Orders from "./pages/Orders/Orders";
-import Verify from "./pages/verify";
+import Verify from "./pages/Verify";
 import ReturnPolicy from "./pages/ReturnPolicy/ReturnPolicy";
 import DeliveryPolicy from "./pages/DeliveryPolicy/DeliveryPolicy";
 import PurchasePolicy from "./pages/PurchasePolicy/PurchasePolicy";
