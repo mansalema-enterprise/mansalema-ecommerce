@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
-import { ShopContext } from "../../context/ShopContext";
+import { ShopContext } from "../../Context/ShopContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { backendUrl } from "../../App";

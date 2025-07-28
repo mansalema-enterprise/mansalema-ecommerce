@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react'
-import { ShopContext } from '../context/ShopContext'
+import { ShopContext } from '../Context/ShopContext'
 import { useNavigate, useSearchParams } from 'react-router'
 import { backendUrl } from '../App'
 import axios from 'axios'

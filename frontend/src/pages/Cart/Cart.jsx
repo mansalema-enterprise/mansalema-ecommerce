@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { MdDelete } from "react-icons/md";
 import CartTotal from "../../components/CartTotal/CartTotal";
 import './Cart.css'
-import { ShopContext } from "../../context/ShopContext";
+import { ShopContext } from "../../Context/ShopContext";
 import { useNavigate } from "react-router-dom";
 
 const Cart = () => {

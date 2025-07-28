@@ -4,7 +4,7 @@ import { BiUser, BiCart } from "react-icons/bi";
 import { FaCentos } from "react-icons/fa";
 import { MdSupportAgent } from "react-icons/md";
 import "./Navbar.css";
-import { ShopContext } from "../../context/ShopContext";
+import { ShopContext } from "../../Context/ShopContext";
 
 const Navbar = () => {
   const { updateSearchTerm, getCartCount, token, setToken } =
