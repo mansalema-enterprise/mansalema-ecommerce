@@ -10,7 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { useEffect } from "react";
 
-export const backendUrl = "http://localhost:4000"
+export const backendUrl = "https://mansalema-ecommerce.onrender.com"
 export const currency = "R"
 
 const App = () => {
