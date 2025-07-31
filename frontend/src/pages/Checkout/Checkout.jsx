@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ShopContext } from "../../Context/ShopContext";
 import CartTotal from "../../components/CartTotal/CartTotal";
-import { assets } from "../../assets/assets"; 
+import { assets } from "../../assets/assets";
 import axios from "axios";
 import { backendUrl } from "../../App";
 import { toast } from "react-toastify";
@@ -41,8 +41,15 @@ const Checkout = () => {
     }));
   };
 
+  // ✅ Check login before form submit
   const onSubmitHandler = async (event) => {
     event.preventDefault();
+
+    if (!token) {
+      toast.info("Please login to continue checkout.");
+      navigate("/login?redirect=checkout");
+      return;
+    }
 
     try {
       let orderItems = [];
@@ -69,7 +76,7 @@ const Checkout = () => {
         orderData,
         {
           headers: {
-            Authorization: `Bearer ${token}`, // <-- THIS IS THE KEY CHANGE
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -157,16 +164,18 @@ const Checkout = () => {
               onChange={onChangeHandler}
               required
             />
-            <input
-              type="text"
-              name="street"
-              value={formData.street}
-              className="form-input"
-              placeholder="Street Address"
-              onChange={onChangeHandler}
-              required
-            />
           </div>
+
+          <input
+            type="text"
+            name="street"
+            value={formData.street}
+            className="form-input"
+            placeholder="Street Address"
+            onChange={onChangeHandler}
+            required
+          />
+
           <div className="form-row">
             <input
               type="text"
@@ -188,17 +197,15 @@ const Checkout = () => {
             />
           </div>
 
-          <div className="form-row">
-            <input
-              type="text"
-              name="zipcode"
-              value={formData.zipcode}
-              className="form-input"
-              placeholder="Zipcode"
-              onChange={onChangeHandler}
-              required
-            />
-          </div>
+          <input
+            type="text"
+            name="zipcode"
+            value={formData.zipcode}
+            className="form-input"
+            placeholder="Zipcode"
+            onChange={onChangeHandler}
+            required
+          />
         </div>
 
         {/* Right side: Summary and Submit */}

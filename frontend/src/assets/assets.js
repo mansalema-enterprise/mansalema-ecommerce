@@ -11,11 +11,11 @@ import dragon_keychain from './dragon-keychain.png'
 import knuckle_spike from './knuckle-spike.png'
 import pink_set from './pink-piece.jpg'
 import whistle_keychain from './whistle-keychain.png'
+import payfast_logo from './payfast.png'
 
 
 export const assets = {
-    stripe_logo,
-    salema_logo,
+    payfast_logo,
     panic_button
 }
 

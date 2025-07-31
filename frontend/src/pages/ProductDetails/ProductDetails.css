@@ -1,122 +1,194 @@
 .product-container {
-    padding-top: 10px;
-    opacity: 1;
+  padding: 20px 0;
+  opacity: 1;
 }
 
 .product-content {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  flex-wrap: wrap; /* ✅ prevents overlap on small screens */
 }
 
+/* ---------- IMAGE SECTION ---------- */
 .product-images {
-    display: flex;
-    flex-direction: column-reverse;
-    gap: 3px;
-    max-width: 50%;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  flex: 1;
+  max-width: 50%;
+  align-items: center;
 }
 
-
+/* Thumbnail row */
+.thumbnail-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 .thumbnail {
-    width: 50%;
-    flex-shrink: 0;
-    cursor: pointer;
-    border-radius: 10px;
+  width: 80px; /* ✅ uniform thumbnails */
+  height: 80px;
+  object-fit: cover; /* ✅ no stretching */
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, border 0.2s ease;
 }
 
+.thumbnail:hover {
+  transform: scale(1.05);
+  border-color: green; /* highlight on hover */
+}
+
+/* Main image */
 .main-img-container {
-    width: 80%;
-    
+  width: 100%;
+  max-width: 450px; /* ✅ controls large image size */
 }
 
 .main-image {
-    width: 100%;
-    height: 60%;
-    border-radius: 10px;
+  width: 100%;
+  aspect-ratio: 1/1; /* ✅ keeps it square and consistent */
+  object-fit: contain; /* ✅ shows full image */
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
+/* ---------- PRODUCT INFO ---------- */
 .product-info {
-    flex: 1;
-    max-width: 50%;
+  flex: 1;
+  max-width: 45%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .product-info .product-name {
-    font-weight: 500;
-    font-size: 2rem;
-    margin-top: 10px;
+  font-weight: 600;
+  font-size: 2rem;
 }
 
 .product-price {
-    margin-top: 20px;
-    font-size: 1.875rem;
-    font-weight: 500;
+  font-size: 1.875rem;
+  font-weight: 500;
+  color: green;
 }
 
 .product-description {
-    margin-top: 20px;
-    color: gray;
-}
-
-.product-divider {
-    margin-top: 30px;
+  color: gray;
+  line-height: 1.5;
 }
 
 .product-policy {
-    margin-top: 20px;
-    color: gray;
-    font-size: 0.875rem;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  color: gray;
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 .add-to-cart-btn {
-    background: green;
-    color: white;
-    padding: 15px 80px;
-    font-size: 0.875rem;
-    cursor: pointer;
-    border: none;
-    border-radius: 10px;
-    margin-top: 15px;
+  background: green;
+  color: white;
+  padding: 15px 50px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  margin-top: 10px;
+  transition: background 0.3s ease;
 }
 
+.add-to-cart-btn:hover {
+  background: darkgreen;
+}
+
+/* ---------- DESCRIPTION TABS ---------- */
 .description-review {
-    margin-top: 50px;
-    border-radius: 30px;
-    
+  margin-top: 50px;
+  border-radius: 30px;
 }
 
 .tabs {
-    display: flex;
+  display: flex;
+  gap: 10px;
 }
 
-.tab{
-    border: 1px solid;
-    border-radius: 22px;
-    padding: 10px 15px;
-    font-size: 0.875rem;
+.tab {
+  border: 1px solid gray;
+  border-radius: 22px;
+  padding: 10px 15px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.tab:hover {
+  background: green;
+  color: white;
+  border-color: green;
 }
 
 .description-content {
-    border: 1px solid;
-    border-radius: 10px;
-    padding: 20px;
-    color: gray;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  color: gray;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.toast-cart-button {
-  padding: 4px 8px;
-  border: none;
-  background: #000;
-  color: #fff;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 0.875rem;
-  margin-top: 8px;
+/* ---------- RESPONSIVE FIXES ---------- */
+
+/* Tablets */
+@media (max-width: 991px) {
+  .product-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-images,
+  .product-info {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .main-img-container {
+    max-width: 350px;
+  }
+
+  .thumbnail-container {
+    justify-content: center;
+  }
+
+  .add-to-cart-btn {
+    margin: 0 auto;
+  }
+}
+
+/* Mobile */
+@media (max-width: 575px) {
+  .thumbnail {
+    width: 60px;
+    height: 60px;
+  }
+
+  .main-img-container {
+    max-width: 280px;
+  }
+
+  .product-info .product-name {
+    font-size: 1.5rem;
+  }
+
+  .product-price {
+    font-size: 1.5rem;
+  }
 }

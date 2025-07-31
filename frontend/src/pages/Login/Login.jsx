@@ -54,6 +54,7 @@ const Login = () => {
       toast.error(error.message);
     }
   };
+  
 
   useEffect(() => {
     if (token) {
@@ -94,7 +95,6 @@ const Login = () => {
           required
         />
         <div className="form-footer">
-          <p className="forgot-password">Forgot Password</p>
           {currentState === "Login" ? (
             <p
               className="toggle-auth-state"
