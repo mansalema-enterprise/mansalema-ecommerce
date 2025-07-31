@@ -1,8 +1,10 @@
+/* ========== FOOTER BASE (DESKTOP) ========== */
 .footer {
     display: flex;
     flex-direction: column;
     gap: 30px;
     padding: 60px;
+    background-color: whitesmoke; /* optional background */
 }
 
 .footer-top {
@@ -26,6 +28,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 15px;
 }
 
 .input input {
@@ -36,6 +39,7 @@
     border-radius: 20px 0 0 20px;
     outline: none;
     font-size: 14px;
+    max-width: 300px; /* prevent stretching too wide */
 }
 
 .input button {
@@ -43,7 +47,7 @@
     color: black;
     border: 2px solid green;
     padding: 15px 20px;
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 0 20px 20px 0;
     font-weight: bold;
     cursor: pointer;
 }
@@ -51,6 +55,9 @@
 .footer-bottom {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    flex-wrap: wrap; /* helps on tablets */
 }
 
 .socials {
@@ -61,14 +68,158 @@
 
 .socials .social-icon {
     font-size: 20px;
+    cursor: pointer;
 }
 
 .footer-right ul{
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
 }
 
 .footer-right ul li {
     font-size: 18px;
     list-style: none;
+    cursor: pointer;
+}
+
+.socials a .social-icon {
+  font-size: 20px;
+  color: black;
+  transition: color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.socials a .social-icon:hover {
+  color: green;
+  transform: scale(1.2);
+}
+
+.footer-right ul li a {
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.footer-right ul li a:hover {
+  color: green;
+}
+
+.copyright {
+  text-align: center;
+  font-size: 14px;
+  color: gray;
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #ddd; /* subtle separator */
+}
+
+
+/* ========== RESPONSIVE FOOTER ========== */
+
+/* Extra small devices (phones) */
+@media (max-width: 575px) {
+    .footer {
+        padding: 30px 15px;
+        gap: 20px;
+    }
+
+    .footer-top h2 {
+        font-size: 28px;
+    }
+
+    .footer-top p {
+        font-size: 16px;
+    }
+
+    /* Input stacks vertically on very small screens */
+    .footer-top .input {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .input input {
+        border-radius: 20px;
+        border-right: 2px solid green;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .input button {
+        width: 100%;
+        border-radius: 20px;
+    }
+
+    /* Footer bottom stacks */
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .socials {
+        justify-content: center;
+    }
+
+    .footer-right ul {
+        justify-content: center;
+    }
+}
+
+/* Small tablets (576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .footer {
+        padding: 40px 30px;
+    }
+
+    .footer-top h2 {
+        font-size: 32px;
+    }
+
+    .footer-top p {
+        font-size: 17px;
+    }
+
+    /* Input remains horizontal but shrinks */
+    .input input {
+        max-width: 200px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .socials {
+        justify-content: center;
+    }
+
+    .footer-right ul {
+        justify-content: center;
+    }
+}
+
+/* Medium tablets (768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .footer {
+        padding: 50px 40px;
+    }
+
+    .footer-top h2 {
+        font-size: 36px;
+    }
+
+    .footer-top p {
+        font-size: 18px;
+    }
+
+    .input input {
+        max-width: 250px;
+    }
+
+    .footer-bottom {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
 }

@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { ShopContext } from '../../Context/ShopContext';
-import { Link } from 'react-router-dom';
+import React, { useContext } from "react";
+import { ShopContext } from "../../context/ShopContext"; 
+import { Link } from "react-router-dom";
 
 const HomeCollection = () => {
   const { filteredProducts, currency } = useContext(ShopContext);
@@ -22,7 +22,10 @@ const HomeCollection = () => {
                   </Link>
                 </div>
                 <h3>{product.name}</h3>
-                <p>{currency}{product.price}</p>
+                <p>
+                  {currency}
+                  {product.price}
+                </p>
               </div>
             ))
           ) : (

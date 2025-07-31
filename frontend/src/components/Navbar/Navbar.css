@@ -1,166 +1,353 @@
+/* ===== BASE NAVBAR STYLES ===== */
 .navbar {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    padding: 1.5rem;
-    font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 1.5rem;
+  font-size: 1rem;
 }
 
 .nav-top {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap; /* keep one line for large screens */
 }
 
 .nav-top h2 {
-    font-size: 30px;
-    color: green;
+  font-size: 30px;
+  color: green;
 }
 
+/* Search Bar */
 .search-bar {
-    display: flex;
-    flex-grow: 1;
-    max-width: 650px;
-    margin: 0 20px;
+  position: relative;
+  flex: 1;
+  max-width: 650px;
+  margin: 0 20px;
 }
 
 .search-input {
-    padding: 10px;
-    flex-grow: 1;
-    border: 2px solid green;
-    border-right: none;
-    border: 20 0 0 20px;
-    outline: none;
-    font-size: 14px;
+  width: 100%;
+  padding: 10px 40px 10px 15px; /* space for icon */
+  border: 2px solid green;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
 }
 
 .search-input::placeholder {
-    color: black;
+  color: black;
 }
 
-.search-button {
-    background-color: green;
-    color: black;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 0 20px 20px 0;
-    font-weight: bold;
-    font-size: 20px;
-    cursor: pointer;
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: green;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
+.search-icon:hover {
+  color: darkgreen;
+}
+
+/* Icons Row */
 .icons {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 35px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 28px;
 }
 
-.icons-icon {
-    font-size: 35px;
-    cursor: pointer;
-}
-
-.profile-group {
-    position: relative;
-}
-
-.dropdown-menu {
-    display: none;
-    position: absolute;
-    top: 28px;
-    right: -30px;
-    background-color: white;
-    border: 1px solid lightgreen;
-    border-radius: 5px;
-    width: 150px;
-    padding: 10px;
-    box-shadow: 0 4px 6px rgba(black, black, black, black);
-    font-size: 20px;
-}
-
-.profile-group:hover .dropdown-menu {
-    display: block;
-}
-
-.dropdown-item {
-    color: gray;
-    cursor: pointer;
-    margin: 5px 0;
+.icon {
+  cursor: pointer;
 }
 
 .cart-icon {
-    position: relative;
+  position: relative;
 }
 
 .cart-count {
-    position: absolute;
-    bottom: 15px;
-    right: -5px;
-    color: white;
-    background: green;
-    border-radius: 50%;
-    font-size: 0.7rem;
-    padding: 0.2rem 0.4rem;
+  position: absolute;
+  bottom: 15px;
+  right: -5px;
+  color: white;
+  background: green;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.4rem;
 }
 
+/* Dropdown */
+.profile-group {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 28px;
+  right: -30px;
+  background-color: white;
+  border: 1px solid lightgreen;
+  border-radius: 5px;
+  width: 150px;
+  padding: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  font-size: 20px;
+}
+
+.profile-group:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-item {
+  color: gray;
+  cursor: pointer;
+  margin: 5px 0;
+}
+
+/* Nav Links */
 .nav-container {
-    display: flex;
-    gap: 30px;
-    justify-content: center;
-    color: green;
-    margin-bottom: 35px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  color: green;
+  margin-bottom: 35px;
+  flex-wrap: wrap;
 }
 
 .navbar-link {
-    font-size: 25px;
-    font-weight: 600;
-    font-weight: bold;
-    gap: 200px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.loader-container {
+/* ===== RESPONSIVE STYLES ===== */
+
+/* Tablet (≤1024px) */
+@media screen and (max-width: 1024px) {
+  .nav-top {
+    flex-wrap: nowrap; /* keep everything in one row */
+    gap: 80px;
+  }
+
+  .left-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .search-bar {
+    flex: 1; /* shrink dynamically */
+    max-width: 60%;
+    
+  }
+
+  .icons {
+    font-size: 26px;
+    gap: 10px;
+    flex-shrink: 0; /* prevent icons from squishing */
+  }
+}
+
+
+/* Extra Small Devices (≤425px) */
+/* Hide mobile search icon on desktop */
+.mobile-search-icon {
+  display: none;
+}
+
+/* Show desktop search by default */
+.desktop-search {
+  display: flex;
+  flex: 1;
+}
+
+/* Fullscreen mobile search overlay */
+.mobile-search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  z-index: 9999;
+}
+
+.mobile-search-overlay input {
+  width: 80%;
+  padding: 12px;
+  font-size: 18px;
+  border: 2px solid green;
+  border-radius: 8px;
+  outline: none;
+}
+
+.mobile-search-overlay button {
+  padding: 10px 20px;
+  background: green;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.close-search {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* On small screens (≤425px) */
+@media screen and (max-width: 425px) {
+  .desktop-search {
+    display: none; /* hide full search */
+  }
+
+  .mobile-search-icon {
+    display: flex;
+    font-size: 28px; /* bigger icon */
+    cursor: pointer;
+  }
+
+  .icons {
+    gap: 14px;
+    font-size: 22px;
+  }
+
+  .nav-top {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Mobile search overlay (fullscreen) */
+  .mobile-search-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    background: white;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     z-index: 9999;
-    background-color: white;
+  }
+
+  .mobile-search-overlay input {
+  width: 90%;  /* make it almost full width */
+  max-width: 500px; /* optional limit */
+  padding: 16px 20px; /* taller */
+  font-size: 18px;
 }
 
-.loader-icon {
-    font-size: 60px;
-    animation: spin 1s linear infinite;
+  .mobile-search-overlay button {
+    padding: 12px 25px; /* bigger button */
+    font-size: 16px;
+    font-weight: bold;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+  }
+
+  .mobile-search-overlay .close-search {
+    margin-top: 15px;
+    font-size: 22px;
+    cursor: pointer;
+    color: gray;
+  }
+}
+
+
+/* Mobile (≤768px) */
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem;
+  }
+
+  /* Keep everything in ONE row */
+  .nav-top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .left-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .search-bar {
+    flex: 1;
+    max-width: 50%;
+    margin: 0;
+  }
+
+  .search-input {
+    width: 90%;
+    font-size: 14px;
+    padding: 8px 35px 8px 12px;
+  }
+
+  .search-icon {
+    font-size: 18px;
+    right: 10px;
+  }
+
+  .icons {
+    display: flex;
+    gap: 12px;
+    font-size: 22px;
     color: green;
-}
+    flex-shrink: 0; /* keep icons visible */
+  }
 
-@keyframes spin {
-    0%{
-        transform: rotate(0deg);
-    }
-    100%{
-        transform: rotate(360deg);
-    }
-}
+  /* Dropdown smaller */
+  .dropdown-menu {
+    top: 30px;
+    right: -10px;
+    font-size: 16px;
+  }
 
-.customer-service-link {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-weight: bold;
-  color: green;
-  cursor: pointer;
-}
+  /* Cart badge smaller */
+  .cart-count {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
 
-.customer-service-link:hover {
-  color: darkgreen;
-}
+  /* Nav links */
+  .nav-container {
+    gap: 12px;
+    margin-top: 15px;
+    text-align: center;
+  }
 
-.service-icon {
-  font-size: 24px;
+  .navbar-link {
+    font-size: 16px;
+  }
 }
 
 

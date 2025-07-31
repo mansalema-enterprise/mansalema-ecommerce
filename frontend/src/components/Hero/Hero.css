@@ -1,64 +1,179 @@
 .hero {
-    height: 80vh;
+  height: 80vh;
 }
 
 .hero-top {
-    display: flex;
-    padding-inline: 20px;
-    gap: 20px;
-    justify-content: space-between;
-    background-color: white;
-    border-radius: 10px;
+  display: flex;
+  padding-inline: 20px;
+  gap: 20px;
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 10px;
 }
 
+/* Desktop: side-by-side, each half width */
 .hero-left {
-    max-width: 50%;
-    padding-top: 40px; /* Add top padding */
-    margin-top: 100px;  /* You can keep this or reduce it */
+  max-width: 50%;
+  padding-top: 40px;
+  margin-top: 100px;
 }
-
 
 .hero-left h2 {
-    font-size: 26px;
+  font-size: 26px;
 }
 
 .hero-left h1 {
-    font-size: 3.5rem;
-    margin-top: 10px;
+  font-size: 3.5rem;
+  margin-top: 10px;
 }
 
 .hero-left p {
-    margin-top: 15px;
-    font-size: 20px;
-    color: gray;
-    gap: 5px;
+  margin-top: 15px;
+  font-size: 20px;
+  color: gray;
+  gap: 5px;
 }
 
 .shop-now {
-    background-color: green;
-    border: 1px solid transparent;
-    border-radius: 20px;
-    font-size: 22px;
-    padding: 12px 24px;
-    width: fit-content;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    color: white;
-    font-weight: bold;
-    margin-top: 20px; /* Adds space between <p> and <button> */
+  background-color: green;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  font-size: 22px;
+  padding: 12px 24px;
+  width: fit-content;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  color: white;
+  font-weight: bold;
+  margin-top: 20px;
 }
 
 .shop-now:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .hero-right {
-    max-width: 50%;
+  max-width: 50%;
 }
 
 .hero-right img {
-    width: 600px;
-    height: 600px;
-    object-fit: contain;
+  width: 600px;
+  height: 600px;
+  object-fit: contain;
 }
 
+/* ========== Responsive Adjustments ========== */
+
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575px) {
+  .hero-top {
+    flex-direction: column; /* stack vertically */
+    padding-inline: 10px;
+  }
+
+  .hero-left,
+  .hero-right {
+    max-width: 100%;
+    margin-top: 20px;
+    padding-top: 10px;
+  }
+
+  .hero-left h2 {
+    font-size: 18px;
+  }
+
+  .hero-left h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-left p {
+    font-size: 16px;
+  }
+
+  .shop-now {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+
+  .hero-right img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: contain;
+  }
+}
+
+/* Small devices (tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .hero-top {
+    flex-direction: column;
+    padding-inline: 15px;
+  }
+
+  .hero-left,
+  .hero-right {
+    max-width: 100%;
+    margin-top: 30px;
+    padding-top: 15px;
+  }
+
+  .hero-left h2 {
+    font-size: 20px;
+  }
+
+  .hero-left h1 {
+    font-size: 3rem;
+  }
+
+  .hero-left p {
+    font-size: 18px;
+  }
+
+  .shop-now {
+    font-size: 20px;
+    padding: 12px 22px;
+  }
+
+  .hero-right img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+  }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .hero-top {
+    flex-direction: row; /* back to side-by-side */
+    padding-inline: 30px;
+  }
+
+  .hero-left,
+  .hero-right {
+    max-width: 50%;
+    margin-top: 40px;
+  }
+
+  .hero-left h2 {
+    font-size: 22px;
+  }
+
+  .hero-left h1 {
+    font-size: 3.2rem;
+  }
+
+  .hero-left p {
+    font-size: 19px;
+  }
+
+  .shop-now {
+    font-size: 21px;
+    padding: 12px 24px;
+  }
+
+  .hero-right img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+  }
+}

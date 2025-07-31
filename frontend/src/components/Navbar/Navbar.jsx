@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BiUser, BiCart } from "react-icons/bi";
+import { BiUser, BiCart, BiSearch } from "react-icons/bi";
 import { FaCentos } from "react-icons/fa";
 import { MdSupportAgent } from "react-icons/md";
 import "./Navbar.css";
@@ -12,25 +12,26 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
+  const [loading, setLoading] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
+
   const logout = () => {
     navigate("/login");
     localStorage.removeItem(token);
     setToken("");
   };
 
-  const [loading, setLoading] = useState(false);
-  const [searchInput, setSearchInput] = useState("");
-
   const handleNavigation = (path) => {
     setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    setTimeout(() => setLoading(false), 2000);
     navigate(path);
   };
 
   const handleSearch = () => {
     updateSearchTerm(searchInput);
+    setShowMobileSearch(false); // hide after search on mobile
   };
 
   return (
@@ -42,18 +43,17 @@ const Navbar = () => {
           </div>
         </div>
       )}
+
+      {/* Top Navbar */}
       <nav className="navbar">
         <div className="nav-top">
-          <Link
-            to="/"
-            onClick={() => {
-              updateSearchTerm("");
-              setSearchInput("");
-            }}
-          >
+          {/* Logo */}
+          <Link to="/" onClick={() => { updateSearchTerm(""); setSearchInput(""); }}>
             <h2>Salema</h2>
           </Link>
-          <div className="search-bar">
+
+          {/* Desktop Search Bar */}
+          <div className="search-bar desktop-search">
             <input
               type="text"
               value={searchInput}
@@ -61,39 +61,38 @@ const Navbar = () => {
               className="search-input"
               placeholder="Search for a product"
             />
-            <button onClick={handleSearch} className="search-button">
-              Search
-            </button>
+            <BiSearch
+              className="search-icon"
+              onClick={handleSearch}
+              title="Search"
+            />
           </div>
-  
+
+          {/* Icons */}
           <div className="icons">
+            {/* Mobile Search Icon */}
+            <BiSearch
+              className="mobile-search-icon"
+              onClick={() => setShowMobileSearch(true)}
+              title="Search"
+            />
+
             <div className="profile-group">
-              <BiUser className="icon" />
-              <div className="dropdown-menu">
-                <Link to="/login">
-                  <p className="dropdown-item">Login/Sign Up</p>
-                </Link>
-                <Link to="/orders">
-                  <p className="dropdown-item">Orders</p>
-                </Link>
-                <p onClick={logout} className="dropdown-item">
-                  Logout
-                </p>
-              </div>
+              <BiUser className="icon" onClick={() => setShowDropdown(!showDropdown)} />
+              {showDropdown && (
+                <div className="dropdown-menu">
+                  <Link to="/login"><p className="dropdown-item">Login/Sign Up</p></Link>
+                  <Link to="/orders"><p className="dropdown-item">Orders</p></Link>
+                  <p onClick={logout} className="dropdown-item">Logout</p>
+                </div>
+              )}
             </div>
 
-            <div
-              className="customer-service-icon"
-              onClick={() => handleNavigation("/CustomerService")}
-              title="Customer Service"
-            >
+            <div className="customer-service-icon" onClick={() => handleNavigation("/CustomerService")} title="Customer Service">
               <MdSupportAgent />
             </div>
 
-            <div
-              className="cart-icon"
-              onClick={() => handleNavigation("/cart")}
-            >
+            <div className="cart-icon" onClick={() => handleNavigation("/cart")}>
               <BiCart className="icon" />
               <span className="cart-count">{getCartCount()}</span>
             </div>
@@ -101,29 +100,29 @@ const Navbar = () => {
         </div>
       </nav>
 
+      {/* Bottom Nav Links */}
       <div className="nav-bottom">
         <div className="nav-container">
-          <div
-            onClick={() => handleNavigation("/category/Salema")}
-            className="navbar-link"
-          >
-            Salema
-          </div>
-          <div
-            onClick={() => handleNavigation("/category/Self-Defence")}
-            className="navbar-link"
-          >
-            Self-Defence
-          </div>
-          <div
-            onClick={() => handleNavigation("/category/Security")}
-            className="navbar-link"
-          >
-            Security
-          </div>
-
+          <div onClick={() => handleNavigation("/category/Salema")} className="navbar-link">Salema</div>
+          <div onClick={() => handleNavigation("/category/Self-Defence")} className="navbar-link">Self-Defence</div>
+          <div onClick={() => handleNavigation("/category/Security")} className="navbar-link">Security</div>
         </div>
       </div>
+
+      {/* Mobile Fullscreen Search */}
+      {showMobileSearch && (
+        <div className="mobile-search-overlay">
+          <input
+            type="text"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            placeholder="Search products..."
+            autoFocus
+          />
+          <button onClick={handleSearch}>Search</button>
+          <span className="close-search" onClick={() => setShowMobileSearch(false)}>✖</span>
+        </div>
+      )}
     </div>
   );
 };

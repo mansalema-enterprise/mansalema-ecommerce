@@ -1,6 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram } from "react-icons/fa";
-import { Link } from "react-router-dom"; // ✅ Import Link
+import { Link } from "react-router-dom";
 import "./Footer.css";
 
 const Footer = () => {
@@ -10,8 +10,21 @@ const Footer = () => {
         <div className="footer-left">
           <h2>Salema</h2>
           <div className="socials">
-            <FaFacebook className="social-icon" />
-            <FaInstagram className="social-icon" />
+            <a
+              href="https://www.facebook.com/Mansalema"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook className="social-icon" />
+            </a>
+
+            <a
+              href="https://www.instagram.com/mansalema"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="social-icon" />
+            </a>
           </div>
         </div>
 
@@ -33,7 +46,10 @@ const Footer = () => {
         </div>
       </div>
 
-      <p className="copyright">Salema. All rights reserved</p>
+      {/*Copyright Section */}
+      <p className="copyright">
+        © {new Date().getFullYear()} Salema. All rights reserved.
+      </p>
     </div>
   );
 };

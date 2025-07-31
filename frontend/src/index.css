@@ -7,20 +7,11 @@
 
 body {
   padding-inline: 80px;
-  background-color:whitesmoke;
+  background-color: whitesmoke;
   font-family: "Outfit", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-}
-
-a {
-  color: green;
-  text-decoration: none;
-}
-
-.product-container {
-  margin-top: 20px;
 }
 
 .list-header h1 {
@@ -30,7 +21,7 @@ a {
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* 4 columns on desktop/laptop */
   gap: 20px;
   column-gap: 10px;
   justify-content: center;
@@ -49,7 +40,7 @@ a {
 }
 
 .product-card:hover {
-  box-shadow: 0 4px 12px rgba(black, black, black, black);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 .product-image img {
@@ -66,8 +57,7 @@ a {
 
 .product-card h3 {
   font-size: 20px;
-  margin: 5px 0;
-  margin-bottom: 10px;
+  margin: 5px 0 10px 0;
 }
 
 .product-card p {
@@ -75,3 +65,118 @@ a {
   color: green;
   padding-bottom: 5px;
 }
+
+
+/* ========== RESPONSIVE LAYOUTS FOR SMALLER SCREENS ========== */
+/* Extra small devices (phones, less than 576px) */
+@media (max-width: 575px) {
+  body {
+    padding-inline: 15px;
+  }
+
+  .list-header h1 {
+    font-size: 24px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr; /* 1 column on phones */
+    gap: 15px;
+  }
+
+  .product-card {
+    width: 100%;
+    padding: 8px;
+  }
+
+  /* ✅ Show full image, no cropping */
+  .product-image img {
+    width: 100%;
+    height: auto;           /* let the height adjust naturally */
+    object-fit: contain;    /* ensure full image is visible */
+    border-radius: 10px;
+    display: block;
+  }
+
+  .product-card h3 {
+    font-size: 18px;
+  }
+
+  .product-card p {
+    font-size: 18px;
+  }
+}
+
+
+/* Small devices (tablets, 576px to 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  body {
+    padding-inline: 30px;
+  }
+
+  .list-header h1 {
+    font-size: 28px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on small tablets */
+    gap: 20px;
+  }
+
+  .product-card {
+    width: 100%;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover; /* ✅ also keeps tablet images proportional */
+    border-radius: 10px;
+  }
+
+  .product-card h3 {
+    font-size: 19px;
+  }
+
+  .product-card p {
+    font-size: 19px;
+  }
+}
+
+/* Medium devices (tablets, 768px to 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  body {
+    padding-inline: 30px; 
+  }
+
+  .list-header h1 {
+    font-size: 32px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px;  
+  }
+
+  .product-card {
+    width: 100%;
+    box-sizing: border-box; 
+  }
+
+  .product-image img {
+    width: 100%;
+    height: auto;           
+    max-height: 240px;      
+    object-fit: contain;    
+    border-radius: 10px;
+    display: block;         
+  }
+
+  .product-card h3 {
+    font-size: 19px;
+  }
+
+  .product-card p {
+    font-size: 19px;
+  }
+}
+
