@@ -3,23 +3,22 @@
     min-height: 100vh;
     border-right: 2px solid gray;
     background-color: white;
+    transition: all 0.3s ease;
 }
 
+/* Sidebar Header */
 .sidebar-header {
     display: flex;
     justify-content: center;
     gap: 10px;
-}
-
-.sidebar-logo {
-    font-size: 35px;
-    margin-top: 18px;
+    padding: 1rem 0;
 }
 
 .sidebar-header h2 {
-    font-size: 30px;
+    font-size: 1.875rem;
 }
 
+/* Sidebar Links */
 .sidebar-links {
     display: flex;
     flex-direction: column;
@@ -32,7 +31,6 @@
     align-items: center;
     gap: 0.75rem;
     border-bottom: 2px solid gray;
-    border-right: none;
     padding: 0.7rem 1.7rem;
     text-decoration: none;
     color: black;
@@ -41,11 +39,11 @@
 
 .sidebar-link:hover {
     background-color: green;
-    color: black;
+    color: white;
 }
 
 .sidebar-icon {
-    font-size: 30px;
+    font-size: 1.875rem;
     color: black;
 }
 
@@ -57,11 +55,133 @@
 button {
     border: none;
     background-color: white;
+    cursor: pointer;
 }
 
-@media (min-width: 768px){
+/* ================== RESPONSIVE ================== */
+
+/* Tablet (≤ 1024px) - Icons only sidebar */
+@media (max-width: 1024px) {
+    .sidebar-container {
+        width: 80px;
+    }
+
+    .sidebar-header h2 {
+        display: none;
+    }
+
+    .sidebar-text {
+        display: none;
+    }
+
+    .sidebar-link {
+        justify-content: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid #ccc;
+    }
+}
+
+/* Mobile (≤ 768px) - Collapsible Sidebar */
+@media (max-width: 768px) {
+    .sidebar-container {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Hidden by default */
+        width: 70%;
+        height: 100vh;
+        background-color: white;
+        border-right: 2px solid gray;
+        z-index: 999;
+        transition: left 0.3s ease;
+    }
+
+    /* Sidebar when active */
+    .sidebar-container.active {
+        left: 0;
+    }
+
+    /* Show the text and header on mobile */
+    .sidebar-header h2 {
+        display: block;
+        font-size: 1.5rem;
+    }
+
     .sidebar-text {
         display: block;
     }
 
+    /* Optional dark overlay behind sidebar */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.3);
+        z-index: 998;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+    }
 }
+
+/* Hamburger Button */
+.hamburger-btn {
+  display: none;
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 1001;
+  background: white;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Dark overlay behind sidebar */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+.sidebar-overlay.active {
+  display: block;
+}
+
+/* Mobile Sidebar */
+@media (max-width: 768px) {
+  .hamburger-btn {
+    display: block;
+  }
+
+  .sidebar-container {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 70%;
+    max-width: 260px;
+    height: 100vh;
+    background-color: white;
+    border-right: 2px solid gray;
+    z-index: 1002;
+    transition: left 0.3s ease-in-out;
+  }
+
+  .sidebar-container.active {
+    left: 0;
+  }
+
+  .sidebar-text {
+    display: block; /* Ensure labels show on mobile */
+  }
+}
+

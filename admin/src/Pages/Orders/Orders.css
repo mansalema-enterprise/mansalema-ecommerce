@@ -3,12 +3,14 @@
   font-weight: bold;
   margin-bottom: 30px;
   color: black;
+  text-align: center;
 }
 
 .order-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 30px;
+  padding: 0 1rem;
 }
 
 .order-card {
@@ -39,12 +41,18 @@
   padding-bottom: 4px;
 }
 
-.order-info, .order-address, .payment-method {
+.order-info,
+.order-address,
+.payment-method {
   margin-top: 10px;
   color: black;
 }
 
-.order-info span, .order-address span, .order-item span, .payment-method span, .order-tel span {
+.order-info span,
+.order-address span,
+.order-item span,
+.payment-method span,
+.order-tel span {
   font-weight: 600;
   color: black;
 }
@@ -83,18 +91,11 @@
   width: 100%;
 }
 
-
 .order-invoice {
-    margin: 5px 0;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: black;
-}
-
-.order-address {
-    margin-top: 5px;
-    font-size: 1rem;
-    line-height: 1.5;
+  margin: 5px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: black;
 }
 
 .order-controls {
@@ -102,6 +103,8 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .delete-icon-btn {
@@ -118,4 +121,56 @@
   color: darkred;
 }
 
+/* ========== Responsive Adjustments ========== */
 
+/* Tablet and below */
+@media (max-width: 1024px) {
+  .order-title {
+    font-size: 1.75rem;
+  }
+
+  .order-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .order-card {
+    padding: 16px;
+  }
+
+  .order-amount {
+    font-size: 1.3rem;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .order-title {
+    font-size: 1.5rem;
+  }
+
+  .order-card {
+    padding: 14px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .section-header {
+    font-size: 1rem;
+  }
+
+  .order-info span,
+  .order-address span,
+  .payment-method span {
+    display: block;
+    font-size: 0.9rem;
+  }
+
+  .order-amount {
+    font-size: 1.2rem;
+  }
+
+  .order-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
