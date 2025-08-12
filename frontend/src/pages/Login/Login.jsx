@@ -16,44 +16,61 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const onSubmitHandler = async (event) => {
-    event.preventDefault();
+  event.preventDefault();
 
-    try {
-      if (currentState === "Sign Up") {
-        const response = await axios.post(backendUrl + "/api/user/register", {
-          name,
-          email,
-          password,
-        });
-        //console.log("Registering user with:", { name, email, password });
+  try {
+    if (currentState === "Sign Up") {
+      const response = await axios.post(backendUrl + "/api/user/register", {
+        name,
+        email,
+        password,
+      });
 
-        if (response.data.success) {
-          setToken(response.data.token);
-          toast.success(response.data.message);
-          localStorage.setItem("token", response.data.token);
+      if (response.data.success) {
+        setToken(response.data.token);
+        toast.success(response.data.message);
+        localStorage.setItem("token", response.data.token);
+
+        // ⬇️ NEW: redirect to returnTo if present
+        const params = new URLSearchParams(window.location.search);
+        const returnTo = params.get("returnTo");
+        if (returnTo) {
+          navigate(returnTo);
         } else {
-          toast.error(response.data.message);
+          navigate("/");
         }
       } else {
-        const response = await axios.post(backendUrl + "/api/user/login", {
-          email,
-          password,
-        });
-        console.log("Login response:", response.data);
-
-        if (response.data.success) {
-          setToken(response.data.token);
-          toast.success(response.data.message);
-          localStorage.setItem("token", response.data.token);
-        } else {
-          toast.error(response.data.message);
-        }
+        toast.error(response.data.message);
       }
-    } catch (error) {
-      console.log(error);
-      toast.error(error.message);
+    } else {
+      const response = await axios.post(backendUrl + "/api/user/login", {
+        email,
+        password,
+      });
+
+      if (response.data.success) {
+        setToken(response.data.token);
+        toast.success(response.data.message);
+        localStorage.setItem("token", response.data.token);
+
+        // ⬇️ NEW: redirect to returnTo if present
+        const params = new URLSearchParams(window.location.search);
+        const returnTo = params.get("returnTo");
+        if (returnTo) {
+          navigate(returnTo);
+        } else {
+          navigate("/");
+        }
+      } else {
+        toast.error(response.data.message);
+      }
     }
-  };
+  } catch (error) {
+    console.log(error);
+    toast.error(error.message);
+  }
+};
+
   
 
   useEffect(() => {
