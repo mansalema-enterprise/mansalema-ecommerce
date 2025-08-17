@@ -3,6 +3,7 @@ import sendEmail from "../utilis/sendEmail.js";
 import userModel from "../models/userModel.js";
 import crypto from "crypto";
 
+
 // Get All Orders (Admin)
 const allOrder = async (req, res) => {
   try {
@@ -44,8 +45,14 @@ const placeOrderPayfast = async (req, res) => {
     const { items, amount, address } = req.body;
     const { origin } = req.headers;
 
-    // Step 1: Create new order WITHOUT invoiceNumber
+    // ✅ Step 1: Generate invoice number BEFORE saving
+    const invoiceNumber = `INV-${new Date().getFullYear()}-${Math.floor(
+      100000 + Math.random() * 900000
+    )}`;
+
+    // ✅ Step 2: Create new order with invoiceNumber included
     let newOrder = new orderModel({
+      invoiceNumber,
       userId,
       items,
       amount,
@@ -56,16 +63,6 @@ const placeOrderPayfast = async (req, res) => {
     });
 
     newOrder = await newOrder.save();
-
-    // Step 2: Generate invoice number using saved order's _id
-    const invoiceNumber = `INV-${new Date().getFullYear()}-${newOrder._id
-      .toString()
-      .slice(-6)
-      .toUpperCase()}`;
-
-    // Step 3: Update order with invoiceNumber
-    newOrder.invoiceNumber = invoiceNumber;
-    await newOrder.save();
 
     // Payfast config
     const merchant_id = process.env.PAYFAST_MERCHANT_ID;
@@ -88,6 +85,7 @@ const placeOrderPayfast = async (req, res) => {
       m_payment_id: newOrder._id.toString(),
     };
 
+    // Generate Payfast signature
     const sortedKeys = Object.keys(paymentData).sort();
     const signatureString = sortedKeys
       .map(
@@ -109,6 +107,7 @@ const placeOrderPayfast = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
 
 // Verify Payment (Used by frontend redirect)
 const verifyPayment = async (req, res) => {
