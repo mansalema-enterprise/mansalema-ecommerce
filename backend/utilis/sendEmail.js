@@ -17,8 +17,10 @@ const sendEmail = async (to, subject, html) => {
       html,
     });
     console.log("✅ Email sent to", to);
+    return true;
   } catch (err) {
-    console.error("❌ Email error:", err.message);
+    console.error("❌ Email error:", err);
+    return false;
   }
 };
 
