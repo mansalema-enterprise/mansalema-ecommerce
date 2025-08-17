@@ -14,18 +14,22 @@ const ProductDetails = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(true);
 
+  // 📝 note state
+  const [note, setNote] = useState("");
+
   useEffect(() => {
     setLoading(true);
     const product = products.find((item) => item._id === productId);
     if (product) {
       setProductData(product);
-      setImage(product.image?.[0] || "/fallback-image.jpg"); // Fallback image
+      setImage(product.image?.[0] || "/fallback-image.jpg");
     }
     setLoading(false);
   }, [productId, products]);
 
   const handleAddToCart = (id) => {
-    addToCart(id);
+    // Send note only if it exists
+    addToCart(id, note); // 👈 make sure your addToCart supports extra data like note
 
     toast.success(
       <div>
@@ -44,6 +48,7 @@ const ProductDetails = () => {
         autoClose: 4000,
       }
     );
+    setNote(""); // clear note after adding
   };
 
   if (loading) {
@@ -81,6 +86,30 @@ const ProductDetails = () => {
           </p>
           <p className="product-description">{productData.description}</p>
           <hr className="product-divider" />
+
+          {/* 📝 Only show note box for specific product */}
+          {productData._id === "6880bf5877e102315e15e1e1" && ( // replace with real ID
+            <div className="note-section">
+              <p className="note-label">Please include the following:</p>
+              <ul className="note-list">
+                <li>Full Name</li>
+                <li>Emergency Contact</li>
+                <li>Any Medical Conditions</li>
+                <li>Alternative Number</li>
+              </ul>
+              <p className="note-hint">
+                If this order is for someone else, kindly provide their details.
+              </p>
+
+              <textarea
+                id="note"
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+                placeholder="Write your note here..."
+                className="note-input"
+              />
+            </div>
+          )}
 
           <button
             onClick={() => handleAddToCart(productData._id)}

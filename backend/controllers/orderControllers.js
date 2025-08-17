@@ -3,9 +3,8 @@ import sendEmail from "../utilis/sendEmail.js";
 import userModel from "../models/userModel.js";
 import crypto from "crypto";
 
-// =======================
 // Get All Orders (Admin)
-// =======================
+
 const allOrder = async (req, res) => {
   try {
     const orders = await orderModel.find({});
@@ -16,9 +15,9 @@ const allOrder = async (req, res) => {
   }
 };
 
-// =======================
+
 // Get Orders for Authenticated User
-// =======================
+
 const userOrders = async (req, res) => {
   try {
     let orders;
@@ -36,9 +35,9 @@ const userOrders = async (req, res) => {
   }
 };
 
-// =======================
+
 // Place Order with Payfast
-// =======================
+
 const placeOrderPayfast = async (req, res) => {
   try {
     const userId = req.userId; // <-- Get from auth middleware
@@ -122,9 +121,9 @@ const placeOrderPayfast = async (req, res) => {
   }
 };
 
-// =======================
+
 // Verify Payment (Used by frontend redirect)
-// =======================
+
 const verifyPayment = async (req, res) => {
   const { orderId, success } = req.body;
 
@@ -142,9 +141,8 @@ const verifyPayment = async (req, res) => {
   }
 };
 
-// =======================
 // Update Order Status (Admin)
-// =======================
+
 const updateStatus = async (req, res) => {
   try {
     const { orderId, status } = req.body;
@@ -188,11 +186,8 @@ const updateStatus = async (req, res) => {
   }
 };
 
-
-
-// =======================
 // Delete Order
-// =======================
+
 const deleteOrder = async (req, res) => {
   try {
     const { orderId } = req.body;

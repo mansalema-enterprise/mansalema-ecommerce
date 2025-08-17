@@ -14,37 +14,31 @@ const ShopContextProvider = ({ children }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [token, setToken] = useState(localStorage.getItem("token") || "");
 
-  const updateSearchTerm = (term) => {
-    setSearchTerm(term);
-  };
+  const updateSearchTerm = (term) => setSearchTerm(term);
 
-  // Add to Cart
-  const addToCart = async (itemId) => {
+  // ✅ Add to Cart
+  const addToCart = async (itemId, note = "") => {
     if (!itemId) {
       toast.error("Add item to cart to continue");
       return;
     }
 
-    const updatedCart = { ...cartItems };
-
-    if (!updatedCart[itemId]) {
-      updatedCart[itemId] = 1;
-    } else {
-      updatedCart[itemId] += 1;
-    }
-
-    setCartItems(updatedCart);
+    setCartItems((prevCart) => {
+      const updatedCart = { ...prevCart };
+      if (!updatedCart[itemId]) {
+        updatedCart[itemId] = { quantity: 1, note };
+      } else {
+        updatedCart[itemId].quantity += 1;
+      }
+      return updatedCart;
+    });
 
     if (token) {
       try {
         await axios.post(
           backendUrl + "/api/cart/add",
-          { itemId },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          { itemId, note },
+          { headers: { Authorization: `Bearer ${token}` } }
         );
       } catch (error) {
         console.log(error);
@@ -53,36 +47,29 @@ const ShopContextProvider = ({ children }) => {
     }
   };
 
-  // Get Cart Count
-  const getCartCount = () => {
-    return Object.values(cartItems).reduce(
-      (total, quantity) => total + quantity,
-      0
-    );
-  };
+  // ✅ Get Cart Count
+  const getCartCount = () =>
+    Object.values(cartItems).reduce((total, item) => total + (item.quantity || 0), 0);
 
-  // Update quantity
+  // ✅ Update Quantity
   const updateQuantity = async (itemId, quantity) => {
     const updatedCart = { ...cartItems };
-
     if (quantity > 0) {
-      updatedCart[itemId] = quantity;
+      updatedCart[itemId] = {
+        ...updatedCart[itemId],
+        quantity,
+      };
     } else {
       delete updatedCart[itemId];
     }
-
     setCartItems(updatedCart);
 
     if (token) {
       try {
         await axios.post(
           backendUrl + "/api/cart/update",
-          { itemId, quantity },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          { itemId, quantity, note: updatedCart[itemId]?.note || "" },
+          { headers: { Authorization: `Bearer ${token}` } }
         );
       } catch (error) {
         console.log(error);
@@ -91,21 +78,26 @@ const ShopContextProvider = ({ children }) => {
     }
   };
 
-  // Get cart for logged-in user
+  // ✅ Get User Cart and normalize
   const getUserCart = async () => {
+    if (!token) return;
     try {
       const response = await axios.post(
         backendUrl + "/api/cart/get",
         {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.data.success) {
-        setCartItems(response.data.cartData);
+        const normalizedCart = {};
+        for (const [itemId, value] of Object.entries(response.data.cartData)) {
+          if (typeof value === "number") {
+            normalizedCart[itemId] = { quantity: value, note: "" };
+          } else {
+            normalizedCart[itemId] = value;
+          }
+        }
+        setCartItems(normalizedCart);
       }
     } catch (error) {
       console.log(error);
@@ -113,19 +105,15 @@ const ShopContextProvider = ({ children }) => {
     }
   };
 
-  // Get total cart amount
+  // ✅ Get total cart amount
   const getCartAmount = () => {
-    let totalAmount = 0;
-    for (const itemId in cartItems) {
-      const itemInfo = products.find((product) => product._id === itemId);
-      if (itemInfo) {
-        totalAmount += itemInfo.price * cartItems[itemId];
-      }
-    }
-    return totalAmount;
+    return Object.entries(cartItems).reduce((total, [itemId, item]) => {
+      const product = products.find((p) => p._id === itemId);
+      return product ? total + product.price * item.quantity : total;
+    }, 0);
   };
 
-  // Fetch all products
+  // ✅ Fetch all products
   const getProductData = async () => {
     try {
       const response = await axios.get(backendUrl + "/api/product/list");
@@ -140,56 +128,41 @@ const ShopContextProvider = ({ children }) => {
     }
   };
 
-  // Filtered products based on search term
+  // ✅ Filtered products based on search term
   const filteredProducts = products.filter((product) =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Clear cart
+  // ✅ Clear Cart
   const clearCart = async () => {
     setCartItems({});
-    if (token) {
-      try {
-        const userId = JSON.parse(atob(token.split(".")[1])).id;
-        await axios.post(
-          backendUrl + "/api/cart/clear",
-          { userId },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-      } catch (error) {
-        console.log(error);
-        toast.error("Failed to clear cart on backend.");
-      }
+    if (!token) return;
+    try {
+      const userId = JSON.parse(atob(token.split(".")[1])).id;
+      await axios.post(
+        backendUrl + "/api/cart/clear",
+        { userId },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to clear cart on backend.");
     }
   };
 
-  // Load products on mount
+  // ✅ Load products on mount
   useEffect(() => {
     getProductData();
   }, []);
 
-  // Load cart if token exists
+  // ✅ Load cart when token changes
   useEffect(() => {
-    const savedToken = localStorage.getItem("token");
-    if (savedToken) {
-      setToken(savedToken);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (token) {
-      getUserCart(); // ✅ run only after token is available
-    }
+    if (token) getUserCart();
   }, [token]);
 
-  // Context value
   const value = {
     products,
-    filteredProducts, // ✅ Expose filtered list
+    filteredProducts,
     delivery_fee,
     cartItems,
     currency,

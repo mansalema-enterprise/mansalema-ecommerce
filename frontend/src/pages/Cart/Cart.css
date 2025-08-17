@@ -1,12 +1,13 @@
 /* ===== CART ITEMS ===== */
 .cart-items {
   display: grid;
-  grid-template-columns: 1fr 100px 50px;
+  grid-template-columns: 1fr 250px 50px; /* <-- more room */
   align-items: center;
   padding: 1.5rem 0;
   border-bottom: 1px solid #ddd;
-  gap: 1.5rem; /
+  gap: 1.5rem;
 }
+
 
 .cart-item-info {
   display: flex;
@@ -63,6 +64,22 @@
   color: red;
   transform: scale(1.1);
 }
+
+.cart-note-textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid green;
+  border-radius: 10px;
+  resize: vertical;
+  width: 100%;
+  max-width: 270px;  /* previously 220px */
+  height: 80px;       /* previously 60px */
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+
+
 
 /* ===== CHECKOUT SECTION ===== */
 .checkout-container {
