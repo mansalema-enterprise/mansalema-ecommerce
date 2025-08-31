@@ -36,7 +36,7 @@ const userOrders = async (req, res) => {
 // Place Order with Payfast
 const placeOrderPayfast = async (req, res) => {
   try {
-    const userId = req.userId; // <-- From auth middleware
+    const userId = req.userId; // 
 
     if (!userId) {
       return res.status(401).json({ success: false, message: "Unauthorized" });
